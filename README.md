@@ -1,7 +1,7 @@
 Fallout-FRM-Viewer
 ==================
 
-A simple, currently incomplete Fallout 1/2 FRM Viewer. Uses SFML.
+A simple, currently incomplete Fallout 1/2 FRM Viewer. Uses SFML.\n<br>
 See: http://falloutmods.wikia.com/wiki/FRM_File_Format
 
 
