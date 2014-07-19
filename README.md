@@ -12,5 +12,5 @@ Directions:
   color.pal should be in the same directory as the executable.
 
 
-L = Load prompt
+L = Load prompt<br>
 Shift+Esc = Shortcut to close window
