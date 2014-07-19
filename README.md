@@ -1,4 +1,4 @@
-Fallout-FRM-Viewer
+Fallout FRM Viewer
 ==================
 
 A simple, currently incomplete Fallout 1/2 FRM Viewer. Uses SFML.<br>
@@ -10,3 +10,7 @@ Directions:
   
   All FRM files must be in [directory of executable]/art/ and should not contain spaces.
   color.pal should be in the same directory as the executable.
+
+
+L = Load prompt
+Shift+Esc = Shortcut to close window
