@@ -75,17 +75,140 @@ const sf::Texture& ImageManager::getTexture(const std::string& frm_name)
      * using the pixel data from the FRM
      */ //note see also http://www.codeproject.com/Tips/527353/Load-an-HBITMAP-into-SFML-sf-Image-container
     std::vector<sf::Uint8> pixels(width * height * 4); //*4 because SFML's rgba format
-    unsigned int r, g, b;
+    unsigned int colorIndex; ///r, g, b;
     for (int i = 0; i < width*height*4; i+=4)
     {
-        r = colors[i/4];
-        g = colors[i/4];
-        b = colors[i/4];
+        colorIndex = colors[i/4];
+        //redundant:
+        //r = colors[i/4]; //RGB values in the FRM file
+        //g = colors[i/4];
+        //b = colors[i/4];
         //TODO: Add palette to Image Manager
-        pixels[i]   = mPaletteColors[r].r      * 4;
-        pixels[i+1] = mPaletteColors[g].g      * 4;
-        pixels[i+2] = mPaletteColors[b].b      * 4;
-        pixels[i+3] = (r == 0 && g == 0 && b == 0)? 0 : 255;
+
+        /// Handling some support for the hardcoded animation indexes... ///
+        if (colorIndex < 229 || colorIndex > 254) //if not an animated index
+        {
+            pixels[i]   = mPaletteColors[colorIndex].r      * 4;
+            pixels[i+1] = mPaletteColors[colorIndex].g      * 4;
+            pixels[i+2] = mPaletteColors[colorIndex].b      * 4;
+            pixels[i+3] = (colorIndex == 0)? 0 : 255;
+        }
+        else //we're dealing with an animated index
+        {
+            //TODO: put into separate function
+            switch (colorIndex) {
+
+            //Slime
+            case 229:
+                pixels[i]   = 0;
+                pixels[i+1] = 108;
+                pixels[i+2] = 0;
+                break;
+            case 230:
+            case 231:
+            case 232:
+                pixels[i]   = 43;
+                pixels[i+1] = 131;
+                pixels[i+2] = 27;
+                break;
+
+            //Shoreline
+            case 248:
+            case 249:
+            case 250:
+            case 251:
+            case 252:
+            case 253:
+                pixels[i]   = 83;
+                pixels[i+1] = 63;
+                pixels[i+2] = 43;
+                break;
+
+            //Slow fire
+            case 238:
+                pixels[i]   = 255;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+            case 239:
+                pixels[i]   = 215;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+            case 240:
+                pixels[i]   = 147;
+                pixels[i+1] = 43;
+                pixels[i+2] = 11;
+                break;
+            case 241:
+                pixels[i]   = 255;
+                pixels[i+1] = 119;
+                pixels[i+2] = 0;
+                break;
+            case 242:
+                pixels[i]   = 255;
+                pixels[i+1] = 59;
+                pixels[i+2] = 0;
+                break;
+
+            //Fast fire
+            case 243:
+                pixels[i]   = 71;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+            case 244:
+                pixels[i]   = 123;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+            case 245:
+                pixels[i]   = 123;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+            case 246:
+                pixels[i]   = 71;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+            case 247:
+                pixels[i]   = 71;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+
+            //Monitors
+            case 233:
+                pixels[i]   = 107;
+                pixels[i+1] = 107;
+                pixels[i+2] = 111;
+                break;
+            case 234:
+            case 235:
+            case 236:
+            case 237:
+                pixels[i]   = 107;
+                pixels[i+1] = 187;
+                pixels[i+2] = 255;
+                break;
+
+            //Alarm
+            case 254:
+                pixels[i]   = 252;
+                pixels[i+1] = 0;
+                pixels[i+2] = 0;
+                break;
+            default:
+                std::cout << "Animated colorIndex " << colorIndex << " not handled\n";
+                pixels[i]   = 1;
+                pixels[i+1] = 1;
+                pixels[i+2] = 1;
+                break;
+            }
+            pixels[i+3] = 255;
+        }
+
     }
     texture->update(&pixels[0]);
 
