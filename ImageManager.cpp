@@ -105,7 +105,15 @@ const sf::Texture& ImageManager::getTexture(const std::string& frm_name)
                 pixels[i+2] = 0;
                 break;
             case 230:
+                pixels[i]   = 11;
+                pixels[i+1] = 115;
+                pixels[i+2] = 7;
+                break;
             case 231:
+                pixels[i]   = 27;
+                pixels[i+1] = 123;
+                pixels[i+2] = 15;
+                break;
             case 232:
                 pixels[i]   = 43;
                 pixels[i+1] = 131;
@@ -114,14 +122,34 @@ const sf::Texture& ImageManager::getTexture(const std::string& frm_name)
 
             //Shoreline
             case 248:
-            case 249:
-            case 250:
-            case 251:
-            case 252:
-            case 253:
                 pixels[i]   = 83;
                 pixels[i+1] = 63;
                 pixels[i+2] = 43;
+                break;
+            case 249:
+                pixels[i]   = 75;
+                pixels[i+1] = 59;
+                pixels[i+2] = 43;
+                break;
+            case 250:
+                pixels[i]   = 67;
+                pixels[i+1] = 55;
+                pixels[i+2] = 39;
+                break;
+            case 251:
+                pixels[i]   = 63;
+                pixels[i+1] = 51;
+                pixels[i+2] = 39;
+                break;
+            case 252:
+                pixels[i]   = 55;
+                pixels[i+1] = 47;
+                pixels[i+2] = 35;
+                break;
+            case 253:
+                pixels[i]   = 51;
+                pixels[i+1] = 43;
+                pixels[i+2] = 35;
                 break;
 
             //Slow fire
@@ -185,8 +213,20 @@ const sf::Texture& ImageManager::getTexture(const std::string& frm_name)
                 pixels[i+2] = 111;
                 break;
             case 234:
+                pixels[i]   = 99;
+                pixels[i+1] = 103;
+                pixels[i+2] = 127;
+                break;
             case 235:
+                pixels[i]   = 87;
+                pixels[i+1] = 107;
+                pixels[i+2] = 143;
+                break;
             case 236:
+                pixels[i]   = 0;
+                pixels[i+1] = 147;
+                pixels[i+2] = 163;
+                break;
             case 237:
                 pixels[i]   = 107;
                 pixels[i+1] = 187;
@@ -201,12 +241,12 @@ const sf::Texture& ImageManager::getTexture(const std::string& frm_name)
                 break;
             default:
                 std::cout << "Animated colorIndex " << colorIndex << " not handled\n";
-                pixels[i]   = 1;
-                pixels[i+1] = 1;
-                pixels[i+2] = 1;
+                pixels[i]   = 255;
+                pixels[i+1] = 255;
+                pixels[i+2] = 255;
                 break;
             }
-            pixels[i+3] = 255;
+            pixels[i+3] = 255; //alpha
         }
 
     }
